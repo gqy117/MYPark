@@ -7,7 +7,7 @@
         }
         //  methods
         indexService.prototype.park = function (carparkID, name, status) {
-            $.post('/Home/Park',
+            $.post('/Carpark/Park',
                 {
                     CarparkID: carparkID,
                     Name: name,
