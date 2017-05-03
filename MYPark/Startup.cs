@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
+using MYPark.Repository;
+using MYPark.Service;
 
 namespace MYPark
 {
@@ -32,6 +34,10 @@ namespace MYPark
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddTransient<HomeService, HomeService>();
+            services.AddTransient<UserCarparkRepository, UserCarparkRepository>();
+            services.AddTransient<CarparkService, CarparkService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

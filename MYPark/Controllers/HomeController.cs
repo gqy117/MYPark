@@ -4,21 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using MYPark.Repository;
 using Microsoft.AspNetCore.Mvc;
+using MYPark.Service;
 
 namespace MYPark.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserCarparkRepository UserCarparkRepository = new UserCarparkRepository();
+        private readonly HomeService HomeService;
+
+        public HomeController(HomeService homeService)
+        {
+            this.HomeService = homeService;
+        }
 
         public IActionResult Index()
         {
-            HomeModel homeModel = new HomeModel();
-            IList<UserCarpark> userCarparkList = this.UserCarparkRepository.GetAll();
-
-            homeModel.UserCarparks = userCarparkList;
-
-            return View(homeModel);
+            return View(this.HomeService.Index());
         }
 
         public IActionResult About()

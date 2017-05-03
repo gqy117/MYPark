@@ -4,29 +4,31 @@ using System.Linq;
 using System.Threading.Tasks;
 using MYPark.Repository;
 using Microsoft.AspNetCore.Mvc;
+using MYPark.Service;
 
 namespace MYPark.Controllers
 {
     public class CarparkController : Controller
     {
-        private readonly UserCarparkRepository UserCarparkRepository = new UserCarparkRepository();
+        private readonly CarparkService CarparkService;
 
+        public CarparkController(CarparkService carparkService)
+        {
+            this.CarparkService = carparkService;
+        }
+        
+        [HttpGet]
         public IActionResult Index()
         {
-            IList<UserCarpark> userCarparkList = this.UserCarparkRepository.GetAll();
+            IList<UserCarpark> userCarparkList = this.CarparkService.GetAll();
 
             return this.Json(userCarparkList);
         }
 
+        [HttpPost]
         public IActionResult Park(UserCarpark userCarpark)
         {
-            List<UserCarpark> userCarparkList = this.UserCarparkRepository.GetAll();
-
-            var indexRecord = userCarparkList.FindIndex(x => x.CarparkID == userCarpark.CarparkID);
-
-            userCarparkList[indexRecord] = userCarpark;
-
-            this.UserCarparkRepository.UpdateAll(userCarparkList);
+            this.CarparkService.Park(userCarpark);
 
             return this.Json("Done");
         }
