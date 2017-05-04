@@ -1,0 +1,24 @@
+{
+  "name": "mypark",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gqy117/MYPark.git"
+  },
+  "author": "leo.li",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gqy117/MYPark/issues"
+  },
+  "homepage": "https://github.com/gqy117/MYPark#readme",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-ssh-deploy": "^0.4.1"
+  }
+}
