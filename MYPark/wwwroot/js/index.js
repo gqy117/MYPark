@@ -7,18 +7,24 @@
         }
         //  methods
         indexService.prototype.park = function (carparkID, name, status) {
-            $.post('/Carpark/Park',
-                {
-                    CarparkID: carparkID,
-                    Name: name,
-                    Status: status
-                },
-                function (res) {
-                    console.log(res);
+            this.postPark({
+                CarparkID: carparkID,
+                Name: name,
+                Status: status
             });
         };
 
-        // inject
+        indexService.prototype.unpark = function (carparkID, status) {
+            this.postPark({
+                CarparkID: carparkID,
+                Status: status
+            });
+        };
+
+        indexService.prototype.postPark = function (userCarpark) {
+            $.post('/Carpark/Park', userCarpark);
+        };
+
         return indexService;
     })();
     M.indexService = indexService;
